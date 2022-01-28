@@ -12,7 +12,7 @@ from app.utils.logger import logger
 router = APIRouter()
 
 
-@router.post('/customer')
+@router.post("/customer")
 def customer_post(customer: Customer):
     """
     :param customer:
@@ -21,22 +21,22 @@ def customer_post(customer: Customer):
     try:
         logger.info(f"Received data: {customer.json()}")
         return {
-            "DateTime": f'{datetime.now()}',
-            "Message": 'Data imported with success'
+            "DateTime": f"{datetime.now()}",
+            "Message": "Data imported with success",
         }
 
     except Exception as err:
-        logger.error(f'Error: {err} Route: /')
+        logger.error(f"Error: {err} Route: /")
         content = {
             "Error": f"{err}",
-            "DateTime": f'{datetime.now()}',
-            "Message": 'Import error'
+            "DateTime": f"{datetime.now()}",
+            "Message": "Import error",
         }
 
         return JSONResponse(status_code=http.HTTPStatus.BAD_REQUEST, content=content)
 
 
-@router.get('/customer')
+@router.get("/customer")
 def customer_get():
     """
     :return: Customers
@@ -45,11 +45,11 @@ def customer_get():
         return JSONResponse(status_code=http.HTTPStatus.OK, content={})
 
     except Exception as err:
-        logger.error(f'Error: {err} Route: ')
+        logger.error(f"Error: {err} Route: ")
         content = {
             "Error": f"{err}",
-            "DateTime": f'{datetime.now()}',
-            "Message": 'Error on get customers'
+            "DateTime": f"{datetime.now()}",
+            "Message": "Error on get customers",
         }
 
         return JSONResponse(status_code=http.HTTPStatus.BAD_REQUEST, content=content)

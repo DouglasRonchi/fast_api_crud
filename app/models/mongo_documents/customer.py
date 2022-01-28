@@ -9,15 +9,11 @@ class Customer(Document, SafeDocumentMixin):
     """
     Customer Model Class
     """
+
     name = StringField(required=True)
     age = IntField(required=True)
 
-    meta = {
-        'collection': 'clients_crud',
-        'indexes': [
-            'name'
-        ]
-    }
+    meta = {"collection": "clients_crud", "indexes": ["name"]}
 
     def __init__(self, *args, **kwargs):
         super(Document, self).__init__(*args, **kwargs)

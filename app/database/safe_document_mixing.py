@@ -11,6 +11,7 @@ class SafeDocumentMixin:
     """
     SafeDocumentMixing Class
     """
+
     def save_safe(self, *args, **kwargs):
         """
         :param args:
@@ -22,7 +23,11 @@ class SafeDocumentMixin:
                 return self.save(*args, **kwargs)
             except pymongo.errors.AutoReconnect as err:
                 wait_t = 0.5 * pow(2, attempt)  # exponential back off
-                logger.warning("PyMongo auto-reconnecting... %s. Waiting %.1f seconds.", str(err), wait_t)
+                logger.warning(
+                    "PyMongo auto-reconnecting... %s. Waiting %.1f seconds.",
+                    str(err),
+                    wait_t,
+                )
                 time.sleep(wait_t)
 
     @classmethod
@@ -37,7 +42,11 @@ class SafeDocumentMixin:
                 return cls.objects(*args, **kwargs)
             except pymongo.errors.AutoReconnect as err:
                 wait_t = 0.5 * pow(2, attempt)  # exponential back off
-                logger.warning("PyMongo auto-reconnecting... %s. Waiting %.1f seconds.", str(err), wait_t)
+                logger.warning(
+                    "PyMongo auto-reconnecting... %s. Waiting %.1f seconds.",
+                    str(err),
+                    wait_t,
+                )
                 time.sleep(wait_t)
 
     def update_safe(self, *args, **kwargs):
@@ -51,5 +60,9 @@ class SafeDocumentMixin:
                 return self.update(*args, **kwargs)
             except pymongo.errors.AutoReconnect as err:
                 wait_t = 0.5 * pow(2, attempt)  # exponential back off
-                logger.warning("PyMongo auto-reconnecting... %s. Waiting %.1f seconds.", str(err), wait_t)
+                logger.warning(
+                    "PyMongo auto-reconnecting... %s. Waiting %.1f seconds.",
+                    str(err),
+                    wait_t,
+                )
                 time.sleep(wait_t)

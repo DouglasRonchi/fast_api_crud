@@ -29,16 +29,12 @@ class Logger:
         self.__config_handler(logging.DEBUG, "debug.log")
 
     def __config_handler(self, level, file=None):
-        # create console handler and set level to debug
         console_handler = logging.FileHandler(file) if file else logging.StreamHandler()
         console_handler.setLevel(level)
-        # create formatter
         formatter = logging.Formatter(
             " %(asctime)s | %(levelname)s | %(module)s:%(lineno)s => %(message)s"
         )
-        # add formatter to console_handler
         console_handler.setFormatter(formatter)
-        # add console_handler to logge  r
         self.logger_worker.addHandler(console_handler)
 
     def get_logger(self):

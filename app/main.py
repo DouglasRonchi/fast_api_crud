@@ -48,8 +48,7 @@ def custom_openapi():
         version="1.1.0",
         description="Customers Crud",
         routes=app.routes,
-
-        servers=[{"url": "http://127.0.0.1:8000/"}]
+        servers=[{"url": "http://127.0.0.1:8000/"}],
     )
     openapi_schema["info"]["x-logo"] = {
         "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
